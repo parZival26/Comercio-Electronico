@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ titulo_pagina }}</title>
+
+    <!-- Font Icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static "accounts/css/style.css" %}">
+</head>
+<body>
+
+    <div class="main">
+        <!-- Sing in  Form -->
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static "accounts/img/signup-image.jpg" %}" alt="sing up image"></figure>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">{{titulo_pagina}}</h2>
+                        <form method="POST" class="register-form" id="login-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="your_name"><i class='bx bxs-user'></i></label>
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class='bx bx-lock-alt'></i></label>
+                                {{ form.password }}
+                            </div>
+                            {% if form.errors %}
+                            <div class="error-message">
+                                <p>- Nombre de usuario o contraseña invalidos</p>
+                            </div>
+                            {% endif %}
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
